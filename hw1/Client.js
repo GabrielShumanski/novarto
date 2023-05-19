@@ -1,10 +1,10 @@
 export class Client {
     static id = 0;
     insideId;
-    constructor(point, timeOfPurchase) {
+    constructor(point) {
         this.point = point;
         this.insideId = ++Client.id;
-        this.timeOfPurchase = timeOfPurchase;
+        this.timeOfPurchase = Date();
     }
 
     getPoint() {

@@ -1,19 +1,29 @@
 import { readFileSync } from 'fs';
 
-async function example(){
+export function fileReader(){
+    let inputData = [];
     try {
         let data = readFileSync('D:\\Programs\\novarto\\hw1\\input.txt', 'utf8');
-        for (let i = 0, j = 0; i < data.length + 1; ++i) {
-            if (data.charAt(i) == '\n') {
+        //console.log(data.lastIndexOf("\r\n"));
+        //console.log(data);
+        for (let i = 0, j = 0; i < data.length; i++) {
+            if (data.charAt(i) == "\r" || data.charAt(i) == '.') {
                 let inputLine = data.slice(j, i);
                 inputLine = inputLine.split(" ");
-                console.log(inputLine);
-                j = i;
+                inputData.push(
+                    {
+                        'type' : inputLine [0],
+                        'x'    : inputLine [1],
+                        'y'    : inputLine [2]
+                    }
+                );
+                j = i + 2;
             }
         }
     } catch(err) {
         console.error(err);
     }
+    return inputData;
 }
-example();
+fileReader();
 
